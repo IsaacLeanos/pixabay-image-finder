@@ -16,11 +16,16 @@ class Search extends React.Component {
     };
 
     onTextChange=(e)=>{
-        this.setState({[e.target.name]:e.target.value},()=>{
-            axios.get(`${this.state.apiUrl}/?key=${this.state.apiKey}&q=${this.state.searchText}&image_type=photo
-            &per_page=${this.state.amount}&safesearch=true`)
-            .then(res=>this.setState({images:res.data.hits}))
-            .catch(e=>console.log('error',e));
+        const value=e.target.value;
+        this.setState({[e.target.name]:value},()=>{
+            if(value===''){
+                this.setState({images:[]});
+            }else{
+                axios.get(`${this.state.apiUrl}/?key=${this.state.apiKey}&q=${this.state.searchText}&image_type=photo
+                &per_page=${this.state.amount}&safesearch=true`)
+                .then(res=>this.setState({images:res.data.hits}))
+                .catch(e=>console.log('error',e));
+            }
         });
     };
 
@@ -55,7 +60,7 @@ class Search extends React.Component {
           <br/>
 
           {this.state.images.length>0?<ImageResults images={this.state.images}/>:null}
-          
+
       </div>
     )
   }

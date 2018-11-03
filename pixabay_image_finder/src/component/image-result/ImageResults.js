@@ -7,6 +7,19 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
 class ImageResults extends Component {
+  state={
+      open:false,
+      currentImage:''
+  }
+
+  handleOpen=img=>{
+      this.setState({open:true,currentImage:img})
+  }
+
+  handleOnClose=()=>{
+      this.setState({open:false})
+  }
+
   render() {
     let imageListContent;
     const{images}=this.props;
@@ -16,10 +29,15 @@ class ImageResults extends Component {
             <GridList cols={3}>
             {images.map(img=>(
                 <GridTile 
-                    title={img.title}
+                    title={img.tags}
                     key={img.id}
                     subtitle={<span>by <strong>{img.user}</strong></span>}
-                    actionIcon={<IconButton><ZoomIn color='white'/></IconButton>}
+                    actionIcon={
+                        <IconButton
+                            onClick={()=>this.handleOpen(img.largeImageURL)}
+                        >
+                        <ZoomIn color='white'/>
+                        </IconButton>}
                 >
                 <img 
                     src={img.largeImageURL}
@@ -33,9 +51,21 @@ class ImageResults extends Component {
         imageListContent=null;
     }
 
+    const actions=[
+        <FlatButton label='Close' primary={true} onClick={this.handleOnClose}/>
+    ]
+
     return (
       <div>
         {imageListContent}
+        <Dialog
+            actions={actions}
+            modal={false}
+            open={this.state.open}
+            onRequestClose={this.handleOnClose}
+        >
+        <img src={this.state.currentImage} alt='' style={{width:'100%'}}/>
+        </Dialog>
       </div>
     )
   }
