@@ -32,7 +32,6 @@ class Search extends React.Component {
     onAmountChange=(e,index,value)=>this.setState({amount:value});
 
   render() {
-    console.log('Nican',this.state.apiKey)  
     return (
       <div>
 
