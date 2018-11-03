@@ -11,7 +11,7 @@ class Search extends React.Component {
         searchText:'',
         amount:15,
         apiUrl:'https://pixabay.com/api',
-        apiKey:'10573179-5fe3c55bc0409172c4f17e306',
+        apiKey:'',
         images:[]
     };
 
