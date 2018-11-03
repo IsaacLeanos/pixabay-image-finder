@@ -11,7 +11,7 @@ class Search extends React.Component {
         searchText:'',
         amount:15,
         apiUrl:'https://pixabay.com/api',
-        apiKey:'',
+        apiKey:process.env.REACT_APP_API_KEY,
         images:[]
     };
 
@@ -32,7 +32,7 @@ class Search extends React.Component {
     onAmountChange=(e,index,value)=>this.setState({amount:value});
 
   render() {
-    console.log(this.state.images)  
+    console.log('Nican',this.state.apiKey)  
     return (
       <div>
 
