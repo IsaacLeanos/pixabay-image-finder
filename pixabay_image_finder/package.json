@@ -10,7 +10,7 @@
     "react-dom": "^16.6.0",
     "react-scripts": "2.1.1"
   },
-  "homepage": "http://IsaacLeanos.github.io/pixabay-image-finder",
+  "homepage": "http://isaacleanos.github.io/pixabay-image-finder",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
